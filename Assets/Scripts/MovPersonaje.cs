@@ -21,15 +21,26 @@ public class MovPersonaje : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float movTeclas = Input.GetAxis("Horizontal"); //(a -1f - d 1f)
-         //float movTeclasY = Input.GetAxis("Vertical"); //(a -1f - d 1f)
 
         float miDeltaTime = Time.deltaTime;
 
-        //movimiento personaje
+        //MOVIMIENTO
+        float movTeclas = Input.GetAxis("Horizontal"); //(a -1f - d 1f)
+        //float movTeclasY = Input.GetAxis("Vertical"); //(a -1f - d 1f)
+
         rb.velocity = new Vector2(movTeclas*multiplicador, rb.velocity.y);
 
+        //Flip <--
+        if(movTeclas < 0){
+             this.GetComponent<SpriteRenderer>().flipX = true;   
+        }else if(movTeclas > 0){
+            this.GetComponent<SpriteRenderer>().flipX = false;
+        }
+
+
+        //SALTO
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.5f);
+
         Debug.DrawRay(transform.position, Vector2.down, Color.magenta);
 
         if(hit){
@@ -39,7 +50,6 @@ public class MovPersonaje : MonoBehaviour
             puedoSaltar = false;
         }
 
-        //Salto
         if(Input.GetKeyDown(KeyCode.Space) && puedoSaltar){
              rb.AddForce(
                 new Vector2(0,multiplicadorSalto),
