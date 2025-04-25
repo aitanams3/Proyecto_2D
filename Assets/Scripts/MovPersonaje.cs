@@ -1,21 +1,23 @@
-    using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MovPersonaje : MonoBehaviour
 {
 
-    public float multiplicador = 5f;
+    public float velocidad = 5f;
+    private float multiplicador = 5f;
     public float multiplicadorSalto = 5f; 
-
     private bool puedoSaltar = true;
-
     private Rigidbody2D rb;
+    private Animator animatorController;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>(); 
+
+        animatorController = this.GetComponent<Animator>();
 
         transform.position = new Vector3(-3.1f, -1.0f, 0); 
     }
@@ -32,12 +34,22 @@ public class MovPersonaje : MonoBehaviour
 
         rb.velocity = new Vector2(movTeclas*multiplicador, rb.velocity.y);
 
-        //Flip <--
+        //izq
         if(movTeclas < 0){
              this.GetComponent<SpriteRenderer>().flipX = true;   
         }else if(movTeclas > 0){
+        //dcha
             this.GetComponent<SpriteRenderer>().flipX = false;
         }
+
+
+       //ANIMACIÓN WALKING
+
+       if(movTeclas != 0){
+            animatorController.SetBool("activaCamina", true);
+       }else{
+            animatorController.SetBool("activaCamina", false);
+       }
 
 
         //SALTO
