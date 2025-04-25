@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +15,9 @@ public class MovPersonaje : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();   
+        rb = this.GetComponent<Rigidbody2D>(); 
+
+        transform.position = new Vector3(-3.1f, -1.0f, 0); 
     }
 
     // Update is called once per frame
