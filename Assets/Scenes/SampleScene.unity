@@ -526,7 +526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 5
-  multiplicadorSalto: 8
+  multiplicadorSalto: 6.5
   miraDerecha: 1
   respawn: {fileID: 0}
 --- !u!70 &70709512

@@ -8,6 +8,8 @@ public class FuegoScript : MonoBehaviour
     GameObject personaje;
     bool bolaDerecha = true;
     public float speedBala = 4f;
+    float tiempoDestruccion = 5.0f;
+    float queHoraEs;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +17,8 @@ public class FuegoScript : MonoBehaviour
 
         personaje = GameObject.Find("Personaje");
         bolaDerecha = personaje.GetComponent<MovPersonaje>().miraDerecha;
+
+        queHoraEs = Time.time;
         
     }
 
@@ -27,6 +31,10 @@ public class FuegoScript : MonoBehaviour
         }else{
             transform.Translate (speedBala*Time.deltaTime*-1, 0, 0, Space.World);
         }
+
+        if(Time.time >= queHoraEs+tiempoDestruccion){
+            Destroy(this.gameObject);
+        }
         
     }
 
@@ -36,6 +44,9 @@ public class FuegoScript : MonoBehaviour
 
         if (col.gameObject.tag == "Enemigo"){
             Destroy(col.gameObject);
+
+            GameManager.muertes +=1;
+
             Destroy(this.gameObject);
         }
 
