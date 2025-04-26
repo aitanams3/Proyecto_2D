@@ -31,6 +31,17 @@ public class FuegoScript : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D col){
-        Debug.Log(col.gameObject.name);
+
+        // Debug.Log(col.gameObject.name.StartsWith("Fantasma"));
+
+        if (col.gameObject.tag == "Enemigo"){
+            Destroy(col.gameObject);
+            Destroy(this.gameObject);
+        }
+
+        // if(col.gameObject.name.StartsWith("Fantasma")){
+        //     Destroy(col.gameObject);
+        // }
+
     }
 }
