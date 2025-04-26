@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7145553388330224365}
   - component: {fileID: 8270404549444701356}
   - component: {fileID: 3865050660437510946}
+  - component: {fileID: 1169726907675183852}
   m_Layer: 0
   m_Name: fuego
   m_TagString: Untagged
@@ -28,9 +29,9 @@ Transform:
   m_GameObject: {fileID: 7135683106736817543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.574, y: -2.62, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -5.54, y: -2.62, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -118,9 +119,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0024748445, y: -0.008353114}
+  m_Offset: {x: 0, y: -0.0008114055}
   serializedVersion: 2
-  m_Radius: 0.10798401
+  m_Radius: 0.108668394
 --- !u!114 &3865050660437510946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,3 +134,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a896772642787a24aa3d3065965fecff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedBala: 0.05
+--- !u!95 &1169726907675183852
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7135683106736817543}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e08e5051c96676b49afe07d470ccf62e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
