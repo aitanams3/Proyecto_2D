@@ -6,11 +6,22 @@ public class MovPersonaje : MonoBehaviour
 {
 
     public float velocidad = 5f;
+
     private float multiplicador = 5f;
+
     public float multiplicadorSalto = 5f; 
+
     private bool puedoSaltar = true;
+
     private Rigidbody2D rb;
+
     private Animator animatorController;
+
+    public GameObject respawn;
+
+    GameObject Respawn;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +30,9 @@ public class MovPersonaje : MonoBehaviour
 
         animatorController = this.GetComponent<Animator>();
 
-        transform.position = new Vector3(-3.1f, -1.0f, 0); 
+        respawn = GameObject.Find("Respawn");
+        
+        Respawnear();
     }
 
     // Update is called once per frame
@@ -54,12 +67,11 @@ public class MovPersonaje : MonoBehaviour
 
         //SALTO
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.5f);
-
         Debug.DrawRay(transform.position, Vector2.down, Color.magenta);
 
         if(hit){
             puedoSaltar = true;
-            Debug.Log(hit.collider.name);
+            //Debug.Log(hit.collider.name);
         }else{
             puedoSaltar = false;
         }
@@ -69,15 +81,24 @@ public class MovPersonaje : MonoBehaviour
                 new Vector2(0,multiplicadorSalto),
                 ForceMode2D.Impulse
             );
-            //puedoSaltar = false;
+        }
+
+        //Comprobar si me he salido de la pantalla
+
+        if(transform.position.y <= -7){
+            Respawnear();
         }
     }
 
-    /*
-    void OnCollisionEnter2D(){
-       puedoSaltar = true;
-       Debug.Log("Collision");
-    }
-    */
+     public void Respawnear (){
 
+        Debug.Log("vidas: "+GameManager.vidas);
+        GameManager.vidas = GameManager.vidas -1;
+        Debug.Log("vidas: "+GameManager.vidas);
+
+        transform.position = respawn.transform.position;
+
+    }
+
+   
 }
