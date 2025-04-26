@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class MonedaScript : MonoBehaviour
 {
+
+    Animator miAnimadorController;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        miAnimadorController = this.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -22,8 +26,8 @@ public class MonedaScript : MonoBehaviour
 
         if(col.name == "Personaje"){
             GameManager.puntos += 1;
-
-            Destroy(this.gameObject, 0f);
+            miAnimadorController.SetBool("MonedaDestruir", true);
+            Destroy(this.gameObject, 1f);
         }
 
     }
