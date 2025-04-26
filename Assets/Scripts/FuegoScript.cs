@@ -7,7 +7,7 @@ public class FuegoScript : MonoBehaviour
 
     GameObject personaje;
     bool bolaDerecha = true;
-    public float speedBala = 0.05f;
+    public float speedBala = 4f;
 
     // Start is called before the first frame update
     void Start()
@@ -23,10 +23,14 @@ public class FuegoScript : MonoBehaviour
     {
 
         if(bolaDerecha){
-            transform.Translate (speedBala + Time.deltaTime, 0, 0, Space.World);
+            transform.Translate (speedBala*Time.deltaTime, 0, 0, Space.World);
         }else{
-            transform.Translate (speedBala + Time.deltaTime*-1, 0, 0, Space.World);
+            transform.Translate (speedBala*Time.deltaTime*-1, 0, 0, Space.World);
         }
         
+    }
+
+    void OnTriggerEnter2D(Collider2D col){
+        Debug.Log(col.gameObject.name);
     }
 }
