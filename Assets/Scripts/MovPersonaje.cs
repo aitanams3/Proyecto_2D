@@ -11,9 +11,15 @@ public class MovPersonaje : MonoBehaviour
 
     public float multiplicadorSalto = 5f; 
 
+    float movTeclas;
+
     private bool puedoSaltar = true;
+    
+    private bool activaSaltoFixed = false;
 
     public bool miraDerecha = true;
+
+    bool soyazul;
 
     private Rigidbody2D rb;
 
@@ -45,10 +51,9 @@ public class MovPersonaje : MonoBehaviour
         float miDeltaTime = Time.deltaTime;
 
         //MOVIMIENTO TECLAS
-        float movTeclas = Input.GetAxis("Horizontal"); //(a -1f - d 1f)
+        movTeclas = Input.GetAxis("Horizontal"); //(a -1f - d 1f)
         //float movTeclasY = Input.GetAxis("Vertical"); //(a -1f - d 1f)
 
-        rb.velocity = new Vector2(movTeclas*multiplicador, rb.velocity.y);
 
         //izq
         if(movTeclas < 0){
@@ -82,10 +87,14 @@ public class MovPersonaje : MonoBehaviour
         }
 
         if(Input.GetKeyDown(KeyCode.Space) && puedoSaltar){
-             rb.AddForce(
-                new Vector2(0,multiplicadorSalto),
-                ForceMode2D.Impulse
-            );
+            activaSaltoFixed = true;
+
+            //PuedoSaltarFixed
+
+            //  rb.AddForce(
+            //     new Vector2(0,multiplicadorSalto),
+            //     ForceMode2D.Impulse
+            // );
         }
 
         //Comprobar si me he salido de la pantalla
@@ -102,8 +111,23 @@ public class MovPersonaje : MonoBehaviour
             GameManager.estoyMuerto = true;
         }
 
+    }
 
+    void FixedUpdate(){
 
+        rb.velocity = new Vector2(movTeclas*multiplicador, rb.velocity.y);
+
+        if(activaSaltoFixed == true){
+            rb.AddForce(
+             new Vector2(0,multiplicadorSalto),
+             ForceMode2D.Impulse
+            );
+
+            activaSaltoFixed = false;
+
+        }
+
+    
     }
 
      public void Respawnear (){
@@ -113,6 +137,19 @@ public class MovPersonaje : MonoBehaviour
         Debug.Log("vidas: "+GameManager.vidas);
 
         transform.position = respawn.transform.position;
+
+    }
+
+
+    public void CambiarColor(){
+
+        if(soyazul){
+        this.GetComponent<SpriteRenderer>().color = Color.white;
+        soyazul = false;
+        }else{
+            this.GetComponent<SpriteRenderer>().color = Color.blue;
+            soyazul = true;
+        }
 
     }
 
