@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class FuegoScript : MonoBehaviour
 {
+
+    GameObject personaje;
+    bool bolaDerecha = true;
+
     // Start is called before the first frame update
     void Start()
     {
+
+        personaje = GameObject.Find("Personaje");
+        bolaDerecha = personaje.GetComponent<MovPersonaje>().miraDerecha;
         
     }
 
@@ -14,7 +21,11 @@ public class FuegoScript : MonoBehaviour
     void Update()
     {
 
-        transform.Translate(0.01f, 0, 0);
+        if(bolaDerecha){
+            transform.Translate(0.01f, 0, 0);
+        }else{
+            transform.Translate(-0.01f, 0, 0);
+        }
         
     }
 }

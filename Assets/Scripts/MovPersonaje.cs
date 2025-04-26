@@ -13,6 +13,8 @@ public class MovPersonaje : MonoBehaviour
 
     private bool puedoSaltar = true;
 
+    public bool miraDerecha = true;
+
     private Rigidbody2D rb;
 
     private Animator animatorController;
@@ -42,7 +44,7 @@ public class MovPersonaje : MonoBehaviour
 
         float miDeltaTime = Time.deltaTime;
 
-        //MOVIMIENTO
+        //MOVIMIENTO TECLAS
         float movTeclas = Input.GetAxis("Horizontal"); //(a -1f - d 1f)
         //float movTeclasY = Input.GetAxis("Vertical"); //(a -1f - d 1f)
 
@@ -51,9 +53,11 @@ public class MovPersonaje : MonoBehaviour
         //izq
         if(movTeclas < 0){
              this.GetComponent<SpriteRenderer>().flipX = true;   
+             miraDerecha = false;
         }else if(movTeclas > 0){
         //dcha
             this.GetComponent<SpriteRenderer>().flipX = false;
+            miraDerecha = true;
         }
 
 
