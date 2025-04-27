@@ -21,6 +21,7 @@ public class DisparoPersonaje : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E)){
 
             Instantiate(fuego, transform.position, Quaternion.identity);
+            AudioManager.Instance.SonarClipUnaVez(AudioManager.Instance.fxFire);
 
         }
         
