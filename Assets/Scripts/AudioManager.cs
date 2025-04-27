@@ -39,4 +39,9 @@ public class AudioManager : MonoBehaviour
     {
         
     }
+    //método para hacer sonar clips de audio
+    public void SonarClipUnaVez(AudioClip ac){
+        _audioSource.PlayOneShot(ac);
+    }
+
 }

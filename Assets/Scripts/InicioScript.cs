@@ -33,11 +33,16 @@ public class InicioScript : MonoBehaviour
     }
 
     public void MostrarSettings(){
+        AudioManager.Instance.SonarClipUnaVez(AudioManager.Instance.fxDead);
          panelSettings.SetActive(true);
     }
 
     public void OcultarSettings(){
          panelSettings.SetActive(false);
+    }
+
+    public void SuenaBoton(){
+        AudioManager.Instance.SonarClipUnaVez(AudioManager.Instance.fxButton);
     }
 
 }
