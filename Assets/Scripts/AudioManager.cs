@@ -10,8 +10,20 @@ public class AudioManager : MonoBehaviour
     public AudioClip fxCoin;
     public AudioClip fxDead;
     public AudioClip fxFire;
-
     AudioSource _audioSource;
+
+
+    public static AudioManager Instance;
+
+    void Awake(){
+
+        if(Instance != null && Instance != this){
+            Destroy(this.gameObject);
+        }else{
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
