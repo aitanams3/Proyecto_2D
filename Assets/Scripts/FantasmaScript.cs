@@ -8,6 +8,7 @@ public class FantasmaScript : MonoBehaviour
     Vector3 posicionInicial;
     GameObject personaje; 
     public float velocidadFantasma = 1f;
+    public MovPersonaje movPersonaje;
 
     AudioSource _audioSource;
 
@@ -19,6 +20,9 @@ public class FantasmaScript : MonoBehaviour
         //personaje = GameObject.Find("Personaje");
         personaje = GameObject.FindGameObjectWithTag("Player");
         _audioSource = this.GetComponent<AudioSource>();
+
+        personaje = GameObject.Find("Personaje");
+        movPersonaje = personaje.GetComponent<MovPersonaje>();
     }
 
     // Update is called once per frame
@@ -54,4 +58,15 @@ public class FantasmaScript : MonoBehaviour
         // Debug.Log(personaje.transform.position.x);
 
     }
+
+    void OnTriggerEnter2D(Collider2D col){
+
+        if(col.name == "Personaje")
+        {
+            AudioManager.Instance.SonarClipUnaVez( AudioManager.Instance.fxDead);
+            movPersonaje.Respawnear();
+        }
+
+    }
+
 }
